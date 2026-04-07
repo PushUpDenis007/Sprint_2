@@ -6,19 +6,19 @@ class Sportsman ():
         self.points=0
 
     def set_points(self, points):
-        self.points += points
+        self.points = points
 
 class Runner(Sportsman):
     def __init__(self):
         super().__init__()
 
     def get_points_for_place(self,place:int):
-        if Runner.IsPlaceCorrect(place):
+        if self.is_place_correct(place):
             super().set_points(101 - place) #В остальных случаях начисляются очки по формуле: 101 - place.  
         return self.points #Метод get_points_for_place() должен возвращать points.
             
     @staticmethod
-    def IsPlaceCorrect(place):
+    def is_place_correct(place):
         #Если место строго больше 100, должно выводиться сообщение 'Баллы начисляются только первым 100 участникам'.
         if place > 100:
             print('Баллы начисляются только первым 100 участникам')
@@ -32,12 +32,12 @@ class Swimmer(Sportsman):
         super().__init__()
 
     def get_points_for_meters(self,meters:int): #Напиши метод get_points_for_meters(), который принимает аргумент meters — целое число. 
-        if Swimmer.IsMetersCorrect(meters):
+        if self.is_meters_correct(meters):
             super().set_points(meters *0.5) #В остальных случаях начисляются очки по формуле: «количество метров умножить на 0.5».
         return self.points #Метод должен возвращать points. Изначально количество очков — 0.
     
     @staticmethod
-    def IsMetersCorrect(meters):
+    def is_meters_correct(meters):
         #Если количество метров меньше нуля, должно выводиться сообщение 'Количество метров не может быть отрицательным'.
         if meters < 0:
             print('Количество метров не может быть отрицательным')
@@ -50,7 +50,7 @@ class Kicker(Runner, Swimmer):
         self.total=0
 
     def get_total_points(self, meters, place):#метод get_total_points(), который принимает как аргументы meters и place;
-        self.total = Runner().get_points_for_place(place) + Swimmer().get_points_for_meters(meters) #переменную total, которая суммирует значения методов get_points_for_place() и get_points_for_meters().
+        self.total = self.get_points_for_place(place) + self.get_points_for_meters(meters) #переменную total, которая суммирует значения методов get_points_for_place() и get_points_for_meters().
         return self.total #Метод возвращает переменную total.
 
 

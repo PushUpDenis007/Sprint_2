@@ -18,8 +18,8 @@ class EmployeeSalary:
         return cls(name, hours, rest_days, email=f"{name}@email.com")
     
     @classmethod
-    def set_hourly_payment(cls,Hourly_payment):
-        cls.hourly_payment=Hourly_payment
+    def set_hourly_payment(cls,hourly_payment):
+        cls.hourly_payment=hourly_payment
     
     def salary(self):
         return self.hours * self.hourly_payment
